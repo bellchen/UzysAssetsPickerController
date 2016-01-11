@@ -48,6 +48,20 @@
     return _assetDeselectedImageName;
 }
 
+- (UIColor*)assetSelectedColor{
+    if (!_assetSelectedColor) {
+        return [UIColor colorWithWhite:1 alpha:0.3];
+    }
+    return _assetSelectedColor;
+}
+
+- (UIColor*)assetSelectedBorderColor{
+    if (!_assetSelectedBorderColor) {
+        return [UIColor clearColor];
+    }
+    return _assetSelectedBorderColor;
+}
+
 - (NSString *)assetsGroupSelectedImageName
 {
     if (!_assetsGroupSelectedImageName) {

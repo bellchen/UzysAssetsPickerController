@@ -14,8 +14,8 @@
 @class UzysAssetsPickerController;
 @protocol UzysAssetsPickerControllerDelegate<NSObject>
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets;
-@optional
 - (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker;
+@optional
 - (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker;
 @end
 
@@ -26,6 +26,7 @@
 @property (nonatomic, assign) NSInteger maximumNumberOfSelectionPhoto;
 //--------------------------------------------------------------------
 @property (nonatomic, assign) NSInteger maximumNumberOfSelectionMedia;
+@property (nonatomic, assign) BOOL autoFinish;
 
 @property (nonatomic, weak) id <UzysAssetsPickerControllerDelegate> delegate;
 + (ALAssetsLibrary *)defaultAssetsLibrary;

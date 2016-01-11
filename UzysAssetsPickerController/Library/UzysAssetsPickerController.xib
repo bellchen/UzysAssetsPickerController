@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UzysAssetsPickerController">
@@ -47,7 +46,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="16"/>
                             <state key="normal" title=".">
-                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="9iB-BX-fxc"/>
@@ -60,12 +59,28 @@
                                 <constraint firstAttribute="width" constant="9" id="i2o-2b-m2Z"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rw-pP-iR9" userLabel="Button - Next">
+                            <rect key="frame" x="266" y="28" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Kjx-As-W1I"/>
+                                <constraint firstAttribute="width" constant="46" id="ZNx-Aa-2H2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="下一步">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="finishPickingAssets:" destination="-1" eventType="touchUpInside" id="mWK-7x-cxf"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="rd5-Z7-vdI" firstAttribute="trailing" secondItem="uvL-Np-IWv" secondAttribute="leading" constant="-3" id="5tI-lL-2ql"/>
                         <constraint firstItem="GMr-RU-k94" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="28" id="Owl-NB-pwD"/>
                         <constraint firstAttribute="height" constant="64" id="RWs-kl-R4L"/>
+                        <constraint firstItem="1Rw-pP-iR9" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="28" id="Y0Q-DA-mX5"/>
+                        <constraint firstAttribute="trailing" secondItem="1Rw-pP-iR9" secondAttribute="trailing" constant="8" id="csJ-1d-x5H"/>
                         <constraint firstItem="uvL-Np-IWv" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="41" id="fEh-hJ-QAP"/>
                         <constraint firstItem="rd5-Z7-vdI" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="23" id="gpf-ZL-oEO"/>
                         <constraint firstAttribute="centerX" secondItem="rd5-Z7-vdI" secondAttribute="centerX" id="o4w-kG-MCJ"/>
@@ -168,9 +183,4 @@
         <image name="UzysAssetPickerController.bundle/uzysAP_ico_upload_done.png" width="15" height="15"/>
         <image name="UzysAssetPickerController.bundle/uzysAP_navi_icon_close.png" width="15" height="15"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

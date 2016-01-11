@@ -26,6 +26,7 @@ static UIColor *videoTitleColor;
 static UIImage *checkedIcon;
 static UIImage *uncheckedIcon;
 static UIColor *selectedColor;
+static UIColor *selectedBorderColor;
 static CGFloat thumnailLength;
 + (void)initialize
 {
@@ -38,7 +39,8 @@ static CGFloat thumnailLength;
     
     checkedIcon     = [UIImage Uzys_imageNamed:appearanceConfig.assetSelectedImageName];
     uncheckedIcon   = [UIImage Uzys_imageNamed:appearanceConfig.assetDeselectedImageName];
-    selectedColor   = [UIColor colorWithWhite:1 alpha:0.3];
+    selectedColor   = appearanceConfig.assetSelectedColor;
+    selectedBorderColor = appearanceConfig.assetSelectedBorderColor;
     
     thumnailLength = ([UIScreen mainScreen].bounds.size.width - appearanceConfig.cellSpacing * ((CGFloat)appearanceConfig.assetsCountInALine - 1.0f)) / (CGFloat)appearanceConfig.assetsCountInALine;
 }
@@ -62,7 +64,12 @@ static CGFloat thumnailLength;
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
 }
-
+- (void)applyCamera:(UIImage *)image{
+    self.asset = nil;
+    self.image = image;
+    self.type  = ALAssetTypeUnknown;
+    self.title = @"camera";
+}
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
@@ -75,6 +82,8 @@ static CGFloat thumnailLength;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionAllowUserInteraction animations:^{
                 self.transform = CGAffineTransformIdentity;
+                self.layer.borderColor=selectedBorderColor.CGColor;
+                self.layer.borderWidth=1;
             } completion:^(BOOL finished) {
                 
             }];
@@ -87,6 +96,8 @@ static CGFloat thumnailLength;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseOut|UIViewAnimationOptionAllowUserInteraction animations:^{
                 self.transform = CGAffineTransformIdentity;
+                self.layer.borderColor=[UIColor clearColor].CGColor;
+                self.layer.borderWidth=0;
             } completion:^(BOOL finished) {
                 
             }];
@@ -137,6 +148,7 @@ static CGFloat thumnailLength;
         CGContextRef context    = UIGraphicsGetCurrentContext();
 		CGContextSetFillColorWithColor(context, selectedColor.CGColor);
 		CGContextFillRect(context, rect);
+        
         [checkedIcon drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - checkedIcon.size.width -2, CGRectGetMinY(rect)+2)];
     }
     else

@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSString *assetSelectedImageName;
 //deselected photo/video checkmark
 @property (nonatomic, strong) NSString *assetDeselectedImageName;
+@property (nonatomic, strong) UIColor *assetSelectedColor;
+@property (nonatomic, strong) UIColor *assetSelectedBorderColor;
 @property (nonatomic, strong) NSString *assetsGroupSelectedImageName;
 @property (nonatomic, strong) NSString *cameraImageName;
 @property (nonatomic, strong) NSString *closeImageName;
@@ -20,6 +22,7 @@
 //
 @property (nonatomic, assign) NSInteger assetsCountInALine;
 @property (nonatomic, assign) CGFloat cellSpacing;
+
 
 + (instancetype)sharedConfig;
 @end

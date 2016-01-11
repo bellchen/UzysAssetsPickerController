@@ -10,4 +10,5 @@
 #import "UzysAssetsPickerController_Configuration.h"
 @interface UzysAssetsViewCell : UICollectionViewCell
 - (void)applyData:(ALAsset *)asset;
+- (void)applyCamera:(UIImage*)image;
 @end
