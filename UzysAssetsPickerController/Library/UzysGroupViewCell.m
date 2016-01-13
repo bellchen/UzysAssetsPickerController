@@ -8,7 +8,6 @@
 #import "UzysAssetsPickerController_Configuration.h"
 #import "UzysGroupViewCell.h"
 #import "UzysAppearanceConfig.h"
-
 @implementation UzysGroupViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -16,12 +15,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.textLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Medium" size:17];
-        self.detailTextLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Medium" size:11];
+        self.textLabel.font = [UIFont systemFontOfSize:17];
+//        self.detailTextLabel.font = [UIFont systemFontOfSize:17];
         UzysAppearanceConfig *appearanceConfig = [UzysAppearanceConfig sharedConfig];
         self.accessoryView = [[UIImageView alloc] initWithImage:[UIImage Uzys_imageNamed:appearanceConfig.assetsGroupSelectedImageName]];
         self.selectedBackgroundView = nil;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor=kRGBA(48, 48, 48, 1);
     }
     return self;
 }
@@ -52,8 +52,21 @@
     float scale                 = height / kThumbnailLength;
     
     self.imageView.image        = [UIImage imageWithCGImage:posterImage scale:scale orientation:UIImageOrientationUp];
-    self.textLabel.text         = [assetsGroup valueForProperty:ALAssetsGroupPropertyName];
-    self.detailTextLabel.text   = [NSString stringWithFormat:@"%ld", (long)[assetsGroup numberOfAssets]];
+    
+    self.textLabel.attributedText = [self buildAttributedString:assetsGroup];
+//
+//    self.detailTextLabel.text   = [NSString stringWithFormat:@"%ld", (long)[assetsGroup numberOfAssets]];
     self.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (NSMutableAttributedString*)buildAttributedString:(ALAssetsGroup*)assetsGroup{
+    NSString *title = [assetsGroup valueForProperty:ALAssetsGroupPropertyName];
+    NSString *detail = [NSString stringWithFormat:@"%ld", (long)[assetsGroup numberOfAssets]];
+    NSString *str = [NSString stringWithFormat:@"%@(%@)",title,detail];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:str];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, str.length)];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, title.length)];
+    [attrString addAttribute:NSForegroundColorAttributeName value:kRGBA(153, 153, 153, 1) range:NSMakeRange(title.length, detail.length+2)];
+    return attrString;
 }
 @end

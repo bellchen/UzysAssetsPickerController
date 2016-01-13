@@ -10,24 +10,11 @@
 typedef void (^intBlock)(NSInteger);
 typedef void (^voidBlock)(void);
 
-#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) // iPhone and       iPod touch style UI
-#define IS_IOS8 ([[UIDevice currentDevice].systemVersion floatValue]>=8)
-#define IS_IPHONE_6_IOS8 (IS_IPHONE && IS_IOS8 &&([[UIScreen mainScreen] nativeBounds].size.height/[[UIScreen mainScreen] nativeScale]) == 667.0f)
-#define IS_IPHONE_6P_IOS8 (IS_IPHONE && IS_IOS8 &&([[UIScreen mainScreen] nativeBounds].size.height/[[UIScreen mainScreen] nativeScale]) == 736.0f)
-
-
 #define kGroupViewCellIdentifier           @"groupViewCellIdentifier"
 #define kAssetsViewCellIdentifier           @"AssetsViewCellIdentifier"
-#define kAssetsSupplementaryViewIdentifier  @"AssetsSupplementaryViewIdentifier"
-#define kThumbnailLength    79.0f
-#define kThumbnailLength_IPHONE6    78.0f + 15.0f
-#define kThumbnailLength_IPHONE6P    78.0f + 24.5f
 
-#define kThumbnailSize      CGSizeMake(kThumbnailLength, kThumbnailLength)
-#define kThumbnailSize_IPHONE6 CGSizeMake(kThumbnailLength_IPHONE6,kThumbnailLength_IPHONE6)
-#define kThumbnailSize_IPHONE6P CGSizeMake(kThumbnailLength_IPHONE6P ,kThumbnailLength_IPHONE6P)
-
-#define THUMBNAIL_SIZE  if(IS_IPHONE) kThumbnailSize 
+#define kThumbnailLength    49.7f
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
 
 #define kTagButtonClose 101
 #define kTagButtonCamera 102
@@ -37,8 +24,9 @@ typedef void (^voidBlock)(void);
 #define kTagNoAssetViewTitleLabel 31
 #define kTagNoAssetViewMsgLabel 32
 
-#define kGroupPickerViewCellLength 90
-
+#define kGroupPickerViewCellLength 67.5f
+#define kRGBA(__r, __g, __b, __a)        [UIColor colorWithRed:(1.0*(__r)/255) green:(1.0*(__g)/255) blue:(1.0*(__b)/255) alpha:1.0*(__a)]
+#define FontDesign(__v)                 (ceil((__v)*(1080.0/(kDevice_Is_iPhone6Plus?1080:1280))/2.0*72/96))
 
 
 #ifdef DEBUG
