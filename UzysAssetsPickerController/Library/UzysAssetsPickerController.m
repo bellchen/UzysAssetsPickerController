@@ -1037,6 +1037,12 @@
                     [self.collectionView selectItemAtIndexPath:newPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
                     [self.orderedSelectedItem addObject:asset];
                     [self.orderedSelectedIndexPath addObject:newPath];
+                    
+                    if (self.autoFinish) {
+                        if (self.orderedSelectedItem.count==self.maximumNumberOfSelection) {
+                            [self finishPickingAssets:nil];
+                        }
+                    }
                 }
                 [self setAssetsCountWithSelectedIndexPaths:self.collectionView.indexPathsForSelectedItems];
             }

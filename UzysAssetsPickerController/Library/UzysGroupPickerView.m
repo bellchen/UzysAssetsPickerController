@@ -12,12 +12,12 @@
 
 #define BounceAnimationPixel 5
 #define NavigationHeight 64
-@interface UITableView (Additions)
-- (void)addLineforPlainCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withLeftSpace:(CGFloat)leftSpace hasSectionLine:(BOOL)hasSectionLine lineColor:(UIColor*)lineColor;
+@interface UITableView (UzysGroupPickerView)
+- (void)UzysGroupPickerView_addLineforPlainCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withLeftSpace:(CGFloat)leftSpace hasSectionLine:(BOOL)hasSectionLine lineColor:(UIColor*)lineColor;
 @end
-@implementation UITableView (Additions)
+@implementation UITableView (UzysGroupPickerView)
 
-- (void)addLineforPlainCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withLeftSpace:(CGFloat)leftSpace hasSectionLine:(BOOL)hasSectionLine lineColor:(UIColor*)lineColor{
+- (void)UzysGroupPickerView_addLineforPlainCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath withLeftSpace:(CGFloat)leftSpace hasSectionLine:(BOOL)hasSectionLine lineColor:(UIColor*)lineColor{
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
@@ -43,29 +43,29 @@
     if (indexPath.row == 0 && indexPath.row == [self numberOfRowsInSection:indexPath.section]-1) {
         //只有一个cell。加上长线&下长线
         if (hasSectionLine) {
-            [self layer:layer addLineUp:YES andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
-            [self layer:layer addLineUp:NO andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
+            [self UzysGroupPickerView_layer:layer addLineUp:YES andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
+            [self UzysGroupPickerView_layer:layer addLineUp:NO andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
         }
     } else if (indexPath.row == 0) {
         //第一个cell。加上长线&下短线
         if (hasSectionLine) {
-            [self layer:layer addLineUp:YES andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
+            [self UzysGroupPickerView_layer:layer addLineUp:YES andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
         }
-        [self layer:layer addLineUp:NO andLong:NO andColor:lineColorRef andBounds:bounds withLeftSpace:leftSpace];
+        [self UzysGroupPickerView_layer:layer addLineUp:NO andLong:NO andColor:lineColorRef andBounds:bounds withLeftSpace:leftSpace];
     } else if (indexPath.row == [self numberOfRowsInSection:indexPath.section]-1) {
         //最后一个cell。加下长线
         if (hasSectionLine) {
-            [self layer:layer addLineUp:NO andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
+            [self UzysGroupPickerView_layer:layer addLineUp:NO andLong:YES andColor:sectionLineColor andBounds:bounds withLeftSpace:0];
         }
     } else {
         //中间的cell。只加下短线
-        [self layer:layer addLineUp:NO andLong:NO andColor:lineColorRef andBounds:bounds withLeftSpace:leftSpace];
+        [self UzysGroupPickerView_layer:layer addLineUp:NO andLong:NO andColor:lineColorRef andBounds:bounds withLeftSpace:leftSpace];
     }
     UIView *testView = [[UIView alloc] initWithFrame:bounds];
     [testView.layer insertSublayer:layer atIndex:0];
     cell.backgroundView = testView;
 }
-- (void)layer:(CALayer *)layer addLineUp:(BOOL)isUp andLong:(BOOL)isLong andColor:(CGColorRef)color andBounds:(CGRect)bounds withLeftSpace:(CGFloat)leftSpace{
+- (void)UzysGroupPickerView_layer:(CALayer *)layer addLineUp:(BOOL)isUp andLong:(BOOL)isLong andColor:(CGColorRef)color andBounds:(CGRect)bounds withLeftSpace:(CGFloat)leftSpace{
     
     CALayer *lineLayer = [[CALayer alloc] init];
     //    CGFloat lineHeight = (1.0f / [UIScreen mainScreen].scale);
@@ -198,7 +198,7 @@
         [cell applyData:[self.groups objectAtIndex:indexPath.row]];
     }
     
-    [tableView addLineforPlainCell:cell
+    [tableView UzysGroupPickerView_addLineforPlainCell:cell
                  forRowAtIndexPath:indexPath
                      withLeftSpace:15
                     hasSectionLine:NO
